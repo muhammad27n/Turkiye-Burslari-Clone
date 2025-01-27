@@ -1,0 +1,172 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turkiye Burslari Clone</title>
+    <link rel="stylesheet" href="./style.css">
+    
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Türkiye Bursları</h1>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#scholarships">Scholarships</a></li>
+                    <li><a href="#application">Application</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content">
+            <h2>Welcome to Türkiye Scholarships</h2>
+            <p>Your Gateway to Quality Education in Turkey</p>
+            <a href="#application" class="btn">Apply Now</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Türkiye Scholarships</h2>
+            <p>Türkiye Scholarships is a government-funded program aimed at supporting students from around the world to study in Turkey. Offering a wide range of programs, Türkiye Scholarships provides comprehensive support to ensure the best educational experience.</p>
+        </div>
+    </section>
+
+    <section id="scholarships">
+        <div class="container">
+            <h2>Scholarship Opportunities</h2>
+            <ul>
+                <li>Undergraduate Scholarships</li>
+                <li>Master's Scholarships</li>
+                <li>PhD Scholarships</li>
+                <li>Short-term Programs</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="application">
+        <div class="container">
+            <h2>Application Process</h2>
+            <p>The application process is simple and user-friendly. Follow the steps below to apply:</p>
+            <form id="application-form">
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Your Email">
+                </div>
+                <div class="form-group">
+                    <label for="message">Why do you want this scholarship?</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Your Message"></textarea>
+                </div>
+                <button type="submit" class="btn">Submit Application</button>
+                <div id="success-message">Thank you! Your application has been submitted.</div>
+            </form>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>Have questions? Reach out to us via email or phone:</p>
+            <ul>
+                <li>Email: info@turkiyeburslari.gov.tr</li>
+                <li>Phone: +90 312 000 0000</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Türkiye Scholarships. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Dynamic text in the hero section
+        const heroText = document.querySelector('#hero h2');
+        const messages = [
+            'Welcome to Türkiye Scholarships',
+            'Your Future Awaits in Turkey',
+            'Achieve Your Dreams with Us'
+        ];
+
+        let messageIndex = 0;
+        setInterval(() => {
+            messageIndex = (messageIndex + 1) % messages.length;
+            heroText.textContent = messages[messageIndex];
+        }, 3000);
+
+        // Highlight active section in the nav bar
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav ul li a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 90) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Form submission handling
+        const form = document.getElementById('application-form');
+        const successMessage = document.getElementById('success-message');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            successMessage.style.display = 'block';
+            form.reset();
+        });
+
+        // Header scroll effect
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
